@@ -30,8 +30,8 @@ const addNavbarListItem = (id, linkName) => {
   navbarList.insertAdjacentHTML("beforeend", itemHtmlText);
 };
 
-const isInViewport = (section) => {
-  const rect = section.getBoundingClientRect();
+const isInViewport = (element) => {
+  const rect = element.getBoundingClientRect();
   
   return (
     rect.top >= 0 &&
@@ -62,8 +62,9 @@ const setActiveSection = (sections) => {
   for (const section of sections) {
     const linkQuery = `a[href="#${section.getAttribute("id")}"]`;
     const activeMenuLink = document.querySelector(linkQuery);
-
-    if (isInViewport(section)) {
+    const sectionParagraph = section.querySelector(".landing__container p");
+    
+    if (isInViewport(sectionParagraph)) {
       section.classList.add("active-section");
       activeMenuLink.classList.add("menu__link--active");
     } else {
